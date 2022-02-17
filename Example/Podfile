@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'XYPager_Example' do
+  pod 'XYPager', :path => '../'
+
+  target 'XYPager_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
