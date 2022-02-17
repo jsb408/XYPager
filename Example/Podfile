@@ -1,9 +1,11 @@
 use_frameworks!
 
-platform :ios, '9.0'
+platform :ios, '11.0'
 
 target 'XYPager_Example' do
   pod 'XYPager', :path => '../'
+  pod 'SnapKit', '~> 5.0.0'
+  pod 'Then'
 
   target 'XYPager_Tests' do
     inherit! :search_paths

@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  XYPager
 //
-//  Created by 97006585 on 02/17/2022.
-//  Copyright (c) 2022 97006585. All rights reserved.
+//  Created by 장수빈 on 2022/02/17.
+//  Copyright © 2022 CocoaPods. All rights reserved.
 //
 
 import UIKit
