@@ -17,7 +17,7 @@ open class Pager<K, V> {
                 onNext: {
                     self._data.accept((self._data.value ?? []) + ($0.data ?? []))
                     self.updateKey(nextKey: $0.nextKey)
-                    self.isLoading = false
+                    self._isLoading.accept(false)
                 }
             )
             .disposed(by: disposeBag)
@@ -29,7 +29,10 @@ open class Pager<K, V> {
     
     public var key: K?
     
-    private var isLoading: Bool = false
+    private var _isLoading = BehaviorRelay(value: false)
+    var isLoading: Observable<Bool> {
+        _isLoading.asObservable()
+    }
     
     private let _data = BehaviorRelay<[V]?>(value: nil)
     public var data: Observable<[V]> {
@@ -40,9 +43,9 @@ open class Pager<K, V> {
     private let disposeBag = DisposeBag()
     
     func load() {
-        guard (key != nil || _data.value == nil), !isLoading else { return }
+        guard (key != nil || _data.value == nil), !_isLoading.value else { return }
         
-        self.isLoading = true
+        self._isLoading.accept(true)
         loadMore()
     }
     

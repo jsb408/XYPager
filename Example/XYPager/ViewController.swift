@@ -34,6 +34,7 @@ class ViewController: UIViewController {
         }
         pagingTableView.register(DataCell.self, forCellReuseIdentifier: "DataCell")
         pagingTableView.setPager(pager: pager)
+        pagingTableView.isShowIndicator = true
         
         pager.data
             .bind(to: pagingTableView.rx.items(cellIdentifier: "DataCell", cellType: DataCell.self)) { (index: Int, element: Int, cell: DataCell) in

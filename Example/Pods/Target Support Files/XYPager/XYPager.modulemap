@@ -1,0 +1,6 @@
+framework module XYPager {
+  umbrella header "XYPager-umbrella.h"
+
+  export *
+  module * { export * }
+}

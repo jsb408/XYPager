@@ -1,0 +1,6 @@
+framework module Pods_XYPager_Example {
+  umbrella header "Pods-XYPager_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

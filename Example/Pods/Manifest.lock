@@ -1,0 +1,41 @@
+PODS:
+  - RxCocoa (6.2.0):
+    - RxRelay (= 6.2.0)
+    - RxSwift (= 6.2.0)
+  - RxRelay (6.2.0):
+    - RxSwift (= 6.2.0)
+  - RxSwift (6.2.0)
+  - SnapKit (5.0.1)
+  - Then (2.7.0)
+  - XYPager (0.1.0):
+    - RxCocoa (= 6.2.0)
+    - RxSwift (= 6.2.0)
+
+DEPENDENCIES:
+  - SnapKit (~> 5.0.0)
+  - Then
+  - XYPager (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SnapKit
+    - Then
+
+EXTERNAL SOURCES:
+  XYPager:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
+  RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
+  RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Then: acfe0be7e98221c6204e12f8161459606d5d822d
+  XYPager: ced513bf40711f41f75d850ba22af0b38824e365
+
+PODFILE CHECKSUM: c98ea57925ceb719837164c9c67f53985943b286
+
+COCOAPODS: 1.11.2
