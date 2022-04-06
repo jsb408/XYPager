@@ -52,4 +52,9 @@ public class UIPagingTableView<K, V>: UITableView, UITableViewDelegate {
         
         return footerView
     }
+    
+    override public func reloadData() {
+        self.pager?.key = self.pager?.reloadKey()
+        super.reloadData()
+    }
 }

@@ -53,6 +53,10 @@ open class Pager<K, V> {
         preconditionFailure("This method must be overridden")
     }
     
+    open func reloadKey() -> K? {
+        preconditionFailure("This method must be overridden")
+    }
+    
     private func updateKey(nextKey: K?) {
         key = nextKey
     }
