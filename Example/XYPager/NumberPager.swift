@@ -20,4 +20,8 @@ class NumberPager: Pager<Int, Int> {
             ))
         }
     }
+    
+    override func getRefreshKey() -> Int? {
+        return 0
+    }
 }

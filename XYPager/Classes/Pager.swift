@@ -49,11 +49,16 @@ open class Pager<K, V> {
         loadMore()
     }
     
+    func refresh() {
+        key = getRefreshKey()
+        _data.accept(nil)
+    }
+    
     open func loadMore() {
         preconditionFailure("This method must be overridden")
     }
     
-    open func reloadKey() -> K? {
+    open func getRefreshKey() -> K? {
         preconditionFailure("This method must be overridden")
     }
     

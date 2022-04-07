@@ -22,11 +22,13 @@ func getSampleData(key: Int, pageSize: Int) -> [Int] {
 class ViewController: UIViewController {
     private let pager = NumberPager(pageSize: 30)
     private let pagingTableView = UIPagingTableView<Int, Int>()
+    private let refreshControl = UIRefreshControl()
     
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pagingTableView.refreshControl = refreshControl
         
         view.addSubview(pagingTableView)
         pagingTableView.snp.makeConstraints {
@@ -37,9 +39,17 @@ class ViewController: UIViewController {
         pagingTableView.isShowIndicator = true
         
         pager.data
+            .observe(on: MainScheduler.asyncInstance)
             .bind(to: pagingTableView.rx.items(cellIdentifier: "DataCell", cellType: DataCell.self)) { (index: Int, element: Int, cell: DataCell) in
+                self.refreshControl.endRefreshing()
                 cell.setData(number: element)
             }
+            .disposed(by: disposeBag)
+        
+        refreshControl.rx.controlEvent(.valueChanged).asObservable()
+            .subscribe(onNext: {
+                self.pagingTableView.refresh()
+            })
             .disposed(by: disposeBag)
     }
 }
