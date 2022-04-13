@@ -7,49 +7,79 @@
 //
 
 import UIKit
-import SnapKit
 import RxSwift
-import RxRelay
-import RxCocoa
-import XYPager
 
-let sampleData = [Int](0 ... 100)
+let sampleData = [Int](0 ... 1000)
 
 func getSampleData(key: Int, pageSize: Int) -> [Int] {
     return [] + sampleData[key * pageSize ... min(sampleData.count - 1, (key + 1) * pageSize - 1)]
 }
 
 class ViewController: UIViewController {
-    private let pager = NumberPager(pageSize: 30)
-    private let pagingTableView = UIPagingTableView<Int, Int>()
-    private let refreshControl = UIRefreshControl()
-    
     private let disposeBag = DisposeBag()
     
+    private let tableViewButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("TableView", for: .normal)
+        
+        return button
+    }()
+    
+    private let collectionViewButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("CollectionView", for: .normal)
+        
+        return button
+    }()
+    
+    private let buttonsStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 30
+        
+        return stack
+    }()
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        pagingTableView.refreshControl = refreshControl
+        setView()
+    }
+    
+    private func setView() {
+        setStackView()
+        setButtons()
+    }
+    
+    private func setStackView() {
+        buttonsStackView.addArrangedSubview(tableViewButton)
+        buttonsStackView.addArrangedSubview(collectionViewButton)
         
-        view.addSubview(pagingTableView)
-        pagingTableView.snp.makeConstraints {
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        view.addSubview(buttonsStackView)
+        buttonsStackView.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
-        pagingTableView.register(DataCell.self, forCellReuseIdentifier: "DataCell")
-        pagingTableView.setPager(pager: pager)
-        pagingTableView.isShowIndicator = true
-        
-        pager.data
-            .observe(on: MainScheduler.asyncInstance)
-            .bind(to: pagingTableView.rx.items(cellIdentifier: "DataCell", cellType: DataCell.self)) { (index: Int, element: Int, cell: DataCell) in
-                self.refreshControl.endRefreshing()
-                cell.setData(number: element)
-            }
+    }
+    
+    private func setButtons() {
+        tableViewButton.rx.tap
+            .subscribe(
+                onNext: {
+                    let vc = TableViewController()
+                    vc.modalPresentationStyle = .fullScreen
+                    
+                    self.present(vc, animated: true)
+                }
+            )
             .disposed(by: disposeBag)
         
-        refreshControl.rx.controlEvent(.valueChanged).asObservable()
-            .subscribe(onNext: {
-                self.pagingTableView.refresh()
-            })
+        collectionViewButton.rx.tap
+            .subscribe(
+                onNext: {
+                    let vc = CollectionViewController()
+                    vc.modalPresentationStyle = .fullScreen
+                    
+                    self.present(vc, animated: true)
+                }
+            )
             .disposed(by: disposeBag)
     }
 }

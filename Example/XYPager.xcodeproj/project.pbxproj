@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3AB265592806AFC300451154 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB265582806AFC300451154 /* TableViewController.swift */; };
+		3AB2655B2806AFCA00451154 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB2655A2806AFCA00451154 /* CollectionViewController.swift */; };
 		3ADA702127BDDF9C0040D3CE /* DataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA702027BDDF9C0040D3CE /* DataCell.swift */; };
 		3ADA702327BDDFA60040D3CE /* NumberPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA702227BDDFA60040D3CE /* NumberPager.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -32,6 +34,8 @@
 /* Begin PBXFileReference section */
 		0B39C0A98523CFE4A246F65B /* Pods-XYPager_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XYPager_Tests.debug.xcconfig"; path = "Target Support Files/Pods-XYPager_Tests/Pods-XYPager_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		0E3C531A2030F1C0BB9590B6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		3AB265582806AFC300451154 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		3AB2655A2806AFCA00451154 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		3ADA702027BDDF9C0040D3CE /* DataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCell.swift; sourceTree = "<group>"; };
 		3ADA702227BDDFA60040D3CE /* NumberPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPager.swift; sourceTree = "<group>"; };
 		3DEB82506CB81EF2E4957983 /* XYPager.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = XYPager.podspec; path = ../XYPager.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -116,6 +120,8 @@
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 				3ADA702027BDDF9C0040D3CE /* DataCell.swift */,
 				3ADA702227BDDFA60040D3CE /* NumberPager.swift */,
+				3AB265582806AFC300451154 /* TableViewController.swift */,
+				3AB2655A2806AFCA00451154 /* CollectionViewController.swift */,
 			);
 			name = "Example for XYPager";
 			path = XYPager;
@@ -349,9 +355,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AB2655B2806AFCA00451154 /* CollectionViewController.swift in Sources */,
 				3ADA702327BDDFA60040D3CE /* NumberPager.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				3ADA702127BDDF9C0040D3CE /* DataCell.swift in Sources */,
+				3AB265592806AFC300451154 /* TableViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

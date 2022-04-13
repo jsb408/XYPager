@@ -1,16 +1,16 @@
 //
-//  UIPagingTableView.swift
+//  UIPagingCollectionView.swift
 //  XYPager
 //
-//  Created by 장수빈 on 2022/02/17.
+//  Created by 장수빈 on 2022/04/13.
 //
 
 import UIKit
 import RxSwift
 
-public class UIPagingTableView<K, V>: UITableView, UITableViewDelegate {
-    override init(frame: CGRect, style: UITableView.Style) {
-        super.init(frame: frame, style: style)
+public class UIPagingCollectionView<K, V>: UICollectionView, UICollectionViewDelegate {
+    override public init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+        super.init(frame: frame, collectionViewLayout: layout)
         self.delegate = self
     }
     
@@ -18,23 +18,17 @@ public class UIPagingTableView<K, V>: UITableView, UITableViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public var isShowIndicator = false
-    
     private var pager: Pager<K, V>? = nil
     private let disposeBag = DisposeBag()
     
     public func setPager(pager: Pager<K, V>) {
         self.pager = pager
-        
-        self.pager?.isLoading
-            .subscribe {
-                self.tableFooterView = $0 && self.isShowIndicator ? self.createSpinnerView() : nil
-            }
-            .disposed(by: disposeBag)
     }
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y > (scrollView.contentSize.height - 100 - scrollView.frame.size.height) {
+        if (self.collectionViewLayout as? UICollectionViewFlowLayout)?.scrollDirection == .horizontal
+        ? scrollView.contentOffset.x > (scrollView.contentSize.width - 100 - scrollView.frame.size.width)
+        : scrollView.contentOffset.y > (scrollView.contentSize.height - 100 - scrollView.frame.size.height) {
             pager?.load()
         }
     }
