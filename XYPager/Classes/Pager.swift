@@ -52,6 +52,7 @@ open class Pager<K, V> {
     func refresh() {
         key = getRefreshKey()
         _data.accept(nil)
+        load()
     }
     
     open func loadMore() {
