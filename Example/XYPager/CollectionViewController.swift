@@ -42,6 +42,7 @@ class CollectionViewController: UIViewController {
         }
         pagingCollectionView.register(DataCollectionViewCell.self, forCellWithReuseIdentifier: "DataCell")
         pagingCollectionView.setPager(pager: pager)
+        pagingCollectionView.delegate = self
         
         pager.data
             .observe(on: MainScheduler.asyncInstance)
@@ -56,5 +57,11 @@ class CollectionViewController: UIViewController {
                 self.pagingCollectionView.refresh()
             })
             .disposed(by: disposeBag)
+    }
+}
+
+extension CollectionViewController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.pagingCollectionView.checkScroll(scrollView)
     }
 }

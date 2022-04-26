@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'XYPager'
-  s.version          = '0.2.1'
+  s.version          = '0.2.2'
   s.summary          = 'Paging for infinity Scroll using RxSwift.'
   s.swift_version    = ['4.0', '4.2', '5.0']
 

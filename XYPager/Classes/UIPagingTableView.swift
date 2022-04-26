@@ -8,16 +8,7 @@
 import UIKit
 import RxSwift
 
-public class UIPagingTableView<K, V>: UITableView, UITableViewDelegate {
-    override init(frame: CGRect, style: UITableView.Style) {
-        super.init(frame: frame, style: style)
-        self.delegate = self
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+public class UIPagingTableView<K, V>: UITableView {
     public var isShowIndicator = false
     
     private var pager: Pager<K, V>? = nil
@@ -33,7 +24,7 @@ public class UIPagingTableView<K, V>: UITableView, UITableViewDelegate {
             .disposed(by: disposeBag)
     }
     
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func checkScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y > (scrollView.contentSize.height - 100 - scrollView.frame.size.height) {
             pager?.load()
         }

@@ -34,6 +34,7 @@ class TableViewController: UIViewController {
         }
         pagingTableView.register(DataCell.self, forCellReuseIdentifier: "DataCell")
         pagingTableView.setPager(pager: pager)
+        pagingTableView.delegate = self
         pagingTableView.isShowIndicator = true
         
         pager.data
@@ -61,5 +62,11 @@ class TableViewController: UIViewController {
                 self.pagingTableView.refresh()
             })
             .disposed(by: disposeBag)
+    }
+}
+
+extension TableViewController: UITableViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.pagingTableView.checkScroll(scrollView)
     }
 }

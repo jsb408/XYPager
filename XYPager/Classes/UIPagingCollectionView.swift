@@ -8,16 +8,7 @@
 import UIKit
 import RxSwift
 
-public class UIPagingCollectionView<K, V>: UICollectionView, UICollectionViewDelegate {
-    override public init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(frame: frame, collectionViewLayout: layout)
-        self.delegate = self
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+public class UIPagingCollectionView<K, V>: UICollectionView {
     private var pager: Pager<K, V>? = nil
     private let disposeBag = DisposeBag()
     
@@ -25,7 +16,7 @@ public class UIPagingCollectionView<K, V>: UICollectionView, UICollectionViewDel
         self.pager = pager
     }
     
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func checkScroll(_ scrollView: UIScrollView) {
         if (self.collectionViewLayout as? UICollectionViewFlowLayout)?.scrollDirection == .horizontal
         ? scrollView.contentOffset.x > (scrollView.contentSize.width - 100 - scrollView.frame.size.width)
         : scrollView.contentOffset.y > (scrollView.contentSize.height - 100 - scrollView.frame.size.height) {
