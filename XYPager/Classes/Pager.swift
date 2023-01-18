@@ -7,6 +7,7 @@
 
 import RxSwift
 import RxRelay
+import RxCocoa
 
 open class Pager<K, V> {
     public init(pageSize: Int) {
@@ -30,8 +31,8 @@ open class Pager<K, V> {
     public var key: K?
     
     private var _isLoading = BehaviorRelay(value: false)
-    var isLoading: Observable<Bool> {
-        _isLoading.asObservable()
+    var isLoading: Driver<Bool> {
+        _isLoading.asDriver()
     }
     
     private let _data = BehaviorRelay<[V]?>(value: nil)
@@ -43,6 +44,7 @@ open class Pager<K, V> {
     private let disposeBag = DisposeBag()
     
     func load() {
+    
         guard (key != nil || _data.value == nil), !_isLoading.value else { return }
         
         self._isLoading.accept(true)

@@ -18,7 +18,7 @@ public class UIPagingTableView<K, V>: UITableView {
         self.pager = pager
         
         self.pager?.isLoading
-            .subscribe {
+            .drive {
                 self.tableFooterView = $0 && self.isShowIndicator ? self.createSpinnerView() : nil
             }
             .disposed(by: disposeBag)
